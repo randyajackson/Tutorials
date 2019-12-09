@@ -67,3 +67,16 @@ let bar: never =
 (() => { throw new Error('Throw my hands in the air like I just dont care') })();
 useful in a situation where the return type is 'never'
 
+const sayWord = (word: string) => {
+    console.log(word);
+};
+typing input parameters for functions
+
+const sayWord = (word: string): string => {
+    console.log(word);
+    return word;
+};
+typing input and output parameters for functions
+
+
+
