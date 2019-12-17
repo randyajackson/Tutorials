@@ -1,0 +1,105 @@
+https://www.youtube.com/watch?v=WhzIjYQmWvs
+
+npx create-graphql-api typescript-graphql-crud-example
+
+(async () => {
+...
+})();
+
+in index.ts is a way to start a function that contains calls with promises.
+
+typeorm is used for creating GraphQL entities
+
+Movie.ts
+-------------
+@Entity()
+export class <Name> {
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column('int', {default : <default value>})
+    <name> : <type>
+}
+
+export class Movie extends BaseEntity {
+
+BaseEntity allows for additional syntax for Movie in MovieResolver
+mainly await Movie.insert({title, minutes});
+
+MovieResolver.ts
+-------------
+@Mutation is from type-graphql
+Mutations are used when you want to update or make a change on the server.
+
+Export the class and add it as a resolver in index.ts
+
+@Mutation( () => Boolean)
+tell type-graphql what the return type of the Mutation is going to Boolean
+
+createMovie(@Arg('title', () => String) title: string) {
+        return true;    
+    }
+
+title: string
+name is title
+type is string
+
+@Arg('title', () => String)
+for type-graphql and graphql schema
+
+'title' is the name of the argument in the graphql schema
+^ this is the argument that is used in the graphql argument - can change
+() => String is the type of the argument in the graphql schema
+
+@Arg('minutes', () => number) minutes: number
+() => number
+number is not a graphql type, it would be an Int or a Float
+
+change to:
+@Arg('minutes', () => number) minutes: number
+
+add Int to imports:
+import { Resolver, Mutation, Arg, Int} from "type-graphql";
+
+
+Creating a query:
+@Query(() => )
+    movies() {return Movie.find();}
+
+Before you would create a schema class, but with type-graphql you can do that differently
+
+In Movie.ts:
+
+add @Field() to to the Columns
+
+export class Movie extends BaseEntity {
+    add @Field( () => Int) Since the number type cannot be inferred
+    @PrimaryGeneratedColumn()
+    id: number
+
+    add @Field()
+    @Column()
+    title: string
+
+    add @Field()
+    @Column('int', {default : 60})
+    minutes: number
+}
+
+
+in GraphQL
+----------------------------------------------------------
+
+mutation{
+  createMovie(the_best_movie: "Blade Runner", minutes: 60)
+}
+
+{
+  "data": {
+    "createMovie": true
+  }
+}
+
+
+
+
