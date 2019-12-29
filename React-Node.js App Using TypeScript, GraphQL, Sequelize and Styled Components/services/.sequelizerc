@@ -1,0 +1,8 @@
+const path = require("path");
+
+module.exports = {
+    //This is a file containing configurations
+    config: path.resolve(__dirname, "./sequelize/config.js"),
+    //This is a directory full of migrations
+    "migrations-path": path.resolve(__dirname, "./sequelize/migrations")
+};

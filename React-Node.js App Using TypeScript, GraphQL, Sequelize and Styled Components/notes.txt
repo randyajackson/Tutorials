@@ -1,0 +1,53 @@
+https://www.youtube.com/watch?v=ZuyaIFXALuQ
+
+npx gitignore node
+creates a gitignore file for multiple aspects of node
+
+services - server
+app - front end app
+
+in services:
+npm i module-alias ts-node-dev typescript
+sets up typescript
+
+in package.json in services:
+"start": {
+    "watch": "ts-node-dev --respawn index.dev.ts"
+  },
+
+ports:
+7000 - services
+7001 - app
+7999 - database
+
+MySQL username: gsd-db
+password: password
+database: gsd
+
+Sequalize is an ORM - Object Relational Mapper
+It is an API that you can use to access your database using Javascript
+
+Migrations are ways that your db can be updated to match the latest versions
+of your application 
+
+Adding tables would be an example of a Migrations
+
+When creating migrations in the sequelize/migrations directory, use the date in the name
+to make it easier to sort.
+
+With npm if you use your own IDs for scripts, you must use:
+npm run-scripts dbMigrate
+
+ "_moduleAliases": {
+    "#root": "./src"  
+  }
+
+makes it so we do not have to do '../../../index.js' types of routes in the code
+#root means inside the src directory
+
+in services/tsconfig.json:
+
+"emitDecoratorMetadata": true,
+"experimentalDecorators": true,
+Need to have enabled for sequelize typescript to work properly
+
