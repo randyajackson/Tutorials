@@ -14,6 +14,10 @@ type Restaurant{
     name: String!    
 }
 
+type Mutation {
+    createChef(name: String!): Chef!
+}
+
 type Query {
     chefs: [Chef!]!
 }

@@ -1,7 +1,9 @@
 import * as React from "react";
+import {ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { createGlobalStyle } from "styled-components";
 
+import graphqlClient from "./api/graphql";
 import Root from "./components/Root";
 
 //tsx is used because the code contains JSX
@@ -14,9 +16,10 @@ body{
 }
 `;
 
-render(<>
+render(
+    <ApolloProvider client = {graphqlClient}>
     <GlobalStyle />
     <Root />
-    </>,
+    </ApolloProvider>,
     document.getElementById("app"));
 
